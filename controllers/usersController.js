@@ -2,7 +2,7 @@ const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
 
 const getAllUsers = async (req, res) => {
-  const result = await mongodb.getDb().db('patients').collection('users').find();
+  const result = await mongodb.getDb().db('journals').collection('users').find();
   if (result) {
     result.toArray().then((lists) => {
       res.setHeader('Content-Type', 'application/json');
@@ -18,14 +18,14 @@ const getOneUser = async (req, res) => {
     res.status(400).json('Must use a valid user id.');
   }
   const userId = new ObjectId(req.params.id);
-  const result = await mongodb.getDb().db('patients').collection('users').find({ _id: userId });
+  const result = await mongodb.getDb().db('s').collection('users').find({ _id: userId });
   if (result) {
     result.toArray().then((lists) => {
       res.setHeader('Content-Type', 'application/json');
       res.status(200).json(lists[0]);
     });
   } else {
-    res.status(400).json(result.error || 'Error occurred while retrieving patient.');
+    res.status(400).json(result.error || 'Error occurred while retrieving .');
   }
 };
 
@@ -37,9 +37,9 @@ const addUser = async (req, res) => {
     displayName: req.body.displayName,
     image: req.body.image,
     createdAt: req.body.createdAt,
-    assignedPatients: req.body.assignedPatients
+    assignedjournals: req.body.assignedjournals
   };
-  const response = await mongodb.getDb().db('patients').collection('users').insertOne(user);
+  const response = await mongodb.getDb().db('journals').collection('users').insertOne(user);
   if (response.acknowledged) {
     res.status(201).json(response);
   } else {
@@ -59,11 +59,11 @@ const updateUser = async (req, res) => {
     displayName: req.body.displayName,
     image: req.body.image,
     createdAt: req.body.createdAt,
-    assignedPatients: req.body.assignedPatients
+    assignedjournals: req.body.assignedjournals
   };
   const response = await mongodb
     .getDb()
-    .db('patients')
+    .db('journals')
     .collection('users')
     .replaceOne({ _id: userId }, user);
   console.log(response);
@@ -81,7 +81,7 @@ const deleteUser = async (req, res) => {
   const userId = new ObjectId(req.params.id);
   const response = await mongodb
     .getDb()
-    .db('patients')
+    .db('journals')
     .collection('users')
     .deleteOne({ _id: userId }, true);
   console.log(response);

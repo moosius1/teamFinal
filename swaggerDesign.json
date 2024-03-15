@@ -2,10 +2,10 @@
   "swagger": "2.0",
   "info": {
     "title": "My API",
-    "description": "Patient Tracker API",
+    "description": "Journal API",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "teamfinal-kbcd.onrender.com",
   "basePath": "/",
   "schemes": [
     "http",
@@ -14,7 +14,7 @@
   "securityDefinitions": {
     "Google Oauth": {
       "type": "oauth2",
-      "authorizationUrl": "http://localhost:8080",
+      "authorizationUrl": "https://teamfinal-kbcd.onrender.com/",
       "flow": "authorizationCode"
     }
   },
@@ -45,7 +45,7 @@
         }
       }
     },
-    "/patients/": {
+    "/journals/": {
       "get": {
         "description": "",
         "produces": [
@@ -116,7 +116,7 @@
         }
       }
     },
-    "/patients/{id}": {
+    "/journals/{id}": {
       "get": {
         "description": "",
         "produces": [
@@ -268,7 +268,7 @@
                 "createdAt": {
                   "example": "any"
                 },
-                "assignedPatients": {
+                "assignedjournals": {
                   "example": "any"
                 }
               }
@@ -344,7 +344,7 @@
                 "createdAt": {
                   "example": "any"
                 },
-                "assignedPatients": {
+                "assignedjournals": {
                   "example": "any"
                 }
               }

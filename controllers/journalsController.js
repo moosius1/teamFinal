@@ -1,36 +1,36 @@
 const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
 
-const getAllPatients = async (req, res) => {
-  const result = await mongodb.getDb().db('patients').collection('patients').find();
+const getAlljournals = async (req, res) => {
+  const result = await mongodb.getDb().db().collection('journals').find();
   if (result) {
     result.toArray().then((lists) => {
       res.setHeader('Content-Type', 'application/json');
       res.status(200).json(lists);
     });
   } else {
-    res.status(400).json(result.error || 'Error occurred while retrieving patients.');
+    res.status(400).json(result.error || 'Error occurred while retrieving journals.');
   }
 };
 
-const getOnePatient = async (req, res) => {
+const getOnejournal = async (req, res) => {
   if (!ObjectId.isValid(req.params.id)) {
-    res.status(400).json('Must use a valid patient id.');
+    res.status(400).json('Must use a valid journal id.');
   }
-  const patientId = new ObjectId(req.params.id);
-  const result = await mongodb.getDb().db('patients').collection('patients').find({ _id: patientId });
+  const journalId = new ObjectId(req.params.id);
+  const result = await mongodb.getDb().db().collection('journals').find({ _id: journalId });
   if (result) {
     result.toArray().then((lists) => {
       res.setHeader('Content-Type', 'application/json');
       res.status(200).json(lists[0]);
     });
   } else {
-    res.status(400).json(result.error || 'Error occurred while retrieving patient.');
+    res.status(400).json(result.error || 'Error occurred while retrieving journal.');
   }
 };
 
-const addPatient = async (req, res) => {
-  const patient = {
+const addjournal = async (req, res) => {
+  const journal = {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     diagnosis: req.body.diagnosis,
@@ -42,20 +42,20 @@ const addPatient = async (req, res) => {
     therapyGoals: req.body.therapyGoals,
     assignedNurse: req.body.assignedNurse
   };
-  const response = await mongodb.getDb().db('patients').collection('patients').insertOne(patient);
+  const response = await mongodb.getDb().db().collection('journals').insertOne(journal);
   if (response.acknowledged) {
     res.status(201).json(response);
   } else {
-    res.status(500).json(response.error || 'Error occurred while creating patient.');
+    res.status(500).json(response.error || 'Error occurred while creating journal.');
   }
 };
 
-const updatePatient = async (req, res) => {
+const updatejournal = async (req, res) => {
   if (!ObjectId.isValid(req.params.id)) {
-    res.status(400).json('Must use a valid patient id.');
+    res.status(400).json('Must use a valid journal id.');
   }
   const userId = new ObjectId(req.params.id);
-  const patient = {
+  const journal = {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     diagnosis: req.body.diagnosis,
@@ -69,33 +69,33 @@ const updatePatient = async (req, res) => {
   };
   const response = await mongodb
     .getDb()
-    .db('patients')
-    .collection('patients')
-    .replaceOne({ _id: userId }, patient);
+    .db('journals')
+    .collection('journals')
+    .replaceOne({ _id: userId }, journal);
   console.log(response);
   if (response.modifiedCount > 0) {
     res.status(204).send();
   } else {
-    res.status(500).json(response.error || 'Error occurred while updating patient.');
+    res.status(500).json(response.error || 'Error occurred while updating journal.');
   }
 };
 
-const deletePatient = async (req, res) => {
+const deletejournal = async (req, res) => {
   if (!ObjectId.isValid(req.params.id)) {
-    res.status(400).json('Must use a valid patient id.');
+    res.status(400).json('Must use a valid journal id.');
   }
   const userId = new ObjectId(req.params.id);
   const response = await mongodb
     .getDb()
-    .db('patients')
-    .collection('patients')
+    .db()
+    .collection('journals')
     .deleteOne({ _id: userId }, true);
   console.log(response);
   if (response.deletedCount > 0) {
     res.status(200).send();
   } else {
-    res.status(500).json(response.error || 'Error occurred while deleting patient.');
+    res.status(500).json(response.error || 'Error occurred while deleting journal.');
   }
 };
 
-module.exports = { getAllPatients, getOnePatient, addPatient, updatePatient, deletePatient };
+module.exports = { getAlljournals, getOnejournal, addjournal, updatejournal, deletejournal };

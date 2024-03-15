@@ -4,7 +4,7 @@ const auth = require('../middleware/auth');
 
 
 
-router.use('/patients', auth.ensureAuth, require('./patientsRoute'));
+router.use('/journals', auth.ensureAuth, require('./journalsRoute'));
 
 router.use('/users',auth.ensureAuth, require('./usersRoute'));
 

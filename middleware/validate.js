@@ -35,7 +35,7 @@ const saveUser = (req, res, next) => {
     displayName: ['required', 'regex:/^[A-Za-z ]{5,}$'],
     image: 'string',
     createdAt: 'string',
-    assignedPatients: []
+    assignedJournals: []
   };
   validator(req.body, validationRule, {}, (err, status) => {
     if (!status) {
