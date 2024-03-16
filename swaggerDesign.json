@@ -116,6 +116,30 @@
         }
       }
     },
+    "/journals/{title}": {
+      "get": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "title",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
     "/journals/{id}": {
       "get": {
         "description": "",
@@ -228,7 +252,7 @@
     },
     "/entries/": {
       "get": {
-        "description": "",
+        "description": "get all entries",
         "produces": [
           "application/json"
         ],
@@ -242,7 +266,7 @@
         }
       },
       "post": {
-        "description": "",
+        "description": "add entry",
         "parameters": [
           {
             "name": "body",
@@ -297,9 +321,57 @@
         }
       }
     },
+    "/entries/{journalId}": {
+      "get": {
+        "description": "find the entries by journal id",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "journalId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+      "/entries/{date}": {
+        "get": {
+          "description": "find entry by date",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "date",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "400": {
+              "description": "Bad Request"
+            }
+          }
+        }
+      },
     "/entries/{id}": {
       "get": {
-        "description": "",
+        "description": "find entry by id",
         "produces": [
           "application/json"
         ],
