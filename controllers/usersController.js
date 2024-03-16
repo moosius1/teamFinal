@@ -18,7 +18,7 @@ const getOneUser = async (req, res) => {
     res.status(400).json('Must use a valid user id.');
   }
   const userId = new ObjectId(req.params.id);
-  const result = await mongodb.getDb().db('s').collection('users').find({ _id: userId });
+  const result = await mongodb.getDb().db('').collection('users').find({ _id: userId });
   if (result) {
     result.toArray().then((lists) => {
       res.setHeader('Content-Type', 'application/json');
@@ -39,7 +39,7 @@ const addUser = async (req, res) => {
     createdAt: req.body.createdAt,
     assignedjournals: req.body.assignedjournals
   };
-  const response = await mongodb.getDb().db('journals').collection('users').insertOne(user);
+  const response = await mongodb.getDb().db('').collection('users').insertOne(user);
   if (response.acknowledged) {
     res.status(201).json(response);
   } else {
