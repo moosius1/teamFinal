@@ -14,7 +14,7 @@
   "securityDefinitions": {
     "Google Oauth": {
       "type": "oauth2",
-      "authorizationUrl": "https://teamfinal-kbcd.onrender.com/",
+      "authorizationUrl": "https://teamfinal-kbcd.onrender.com",
       "flow": "authorizationCode"
     }
   },
@@ -69,34 +69,19 @@
             "schema": {
               "type": "object",
               "properties": {
-                "firstName": {
+                "title": {
+                  "example": "Captains Log"
+                },
+                "theme": {
+                  "example": "Gratitude"
+                },
+                "createdUserId": {
                   "example": "any"
                 },
-                "lastName": {
+                "createdAt": {
                   "example": "any"
                 },
-                "diagnosis": {
-                  "example": "any"
-                },
-                "birthday": {
-                  "example": "any"
-                },
-                "weightBearingStatus": {
-                  "example": "any"
-                },
-                "therapyOrderEndDate": {
-                  "example": "any"
-                },
-                "lastVisit": {
-                  "example": "any"
-                },
-                "nextVisit": {
-                  "example": "any"
-                },
-                "therapyGoals": {
-                  "example": "any"
-                },
-                "assignedNurse": {
+                "entries": {
                   "example": "any"
                 }
               }
@@ -178,34 +163,19 @@
             "schema": {
               "type": "object",
               "properties": {
-                "firstName": {
+                "title": {
+                  "example": "Captains Log"
+                },
+                "theme": {
+                  "example": "Gratitude"
+                },
+                "createdUserId": {
                   "example": "any"
                 },
-                "lastName": {
+                "createdAt": {
                   "example": "any"
                 },
-                "diagnosis": {
-                  "example": "any"
-                },
-                "birthday": {
-                  "example": "any"
-                },
-                "weightBearingStatus": {
-                  "example": "any"
-                },
-                "therapyOrderEndDate": {
-                  "example": "any"
-                },
-                "lastVisit": {
-                  "example": "any"
-                },
-                "nextVisit": {
-                  "example": "any"
-                },
-                "therapyGoals": {
-                  "example": "any"
-                },
-                "assignedNurse": {
+                "entries": {
                   "example": "any"
                 }
               }
@@ -274,34 +244,25 @@
             "schema": {
               "type": "object",
               "properties": {
-                "firstName": {
+                "journalId": {
                   "example": "any"
                 },
-                "lastName": {
+                "title": {
                   "example": "any"
                 },
-                "diagnosis": {
+                "content": {
                   "example": "any"
                 },
-                "birthday": {
+                "mood": {
                   "example": "any"
                 },
-                "weightBearingStatus": {
+                "tags": {
                   "example": "any"
                 },
-                "therapyOrderEndDate": {
+                "createdAt": {
                   "example": "any"
                 },
-                "lastVisit": {
-                  "example": "any"
-                },
-                "nextVisit": {
-                  "example": "any"
-                },
-                "therapyGoals": {
-                  "example": "any"
-                },
-                "assignedNurse": {
+                "updatedAt": {
                   "example": "any"
                 }
               }
@@ -407,34 +368,25 @@
             "schema": {
               "type": "object",
               "properties": {
-                "firstName": {
+                "journalId": {
                   "example": "any"
                 },
-                "lastName": {
+                "title": {
                   "example": "any"
                 },
-                "diagnosis": {
+                "content": {
                   "example": "any"
                 },
-                "birthday": {
+                "mood": {
                   "example": "any"
                 },
-                "weightBearingStatus": {
+                "tags": {
                   "example": "any"
                 },
-                "therapyOrderEndDate": {
+                "createdAt": {
                   "example": "any"
                 },
-                "lastVisit": {
-                  "example": "any"
-                },
-                "nextVisit": {
-                  "example": "any"
-                },
-                "therapyGoals": {
-                  "example": "any"
-                },
-                "assignedNurse": {
+                "updatedAt": {
                   "example": "any"
                 }
               }
@@ -503,35 +455,11 @@
             "schema": {
               "type": "object",
               "properties": {
-                "firstName": {
-                  "example": "any"
+                "expires": {
+                  "example": "date time"
                 },
-                "lastName": {
-                  "example": "any"
-                },
-                "diagnosis": {
-                  "example": "any"
-                },
-                "birthday": {
-                  "example": "any"
-                },
-                "weightBearingStatus": {
-                  "example": "any"
-                },
-                "therapyOrderEndDate": {
-                  "example": "any"
-                },
-                "lastVisit": {
-                  "example": "any"
-                },
-                "nextVisit": {
-                  "example": "any"
-                },
-                "therapyGoals": {
-                  "example": "any"
-                },
-                "assignedNurse": {
-                  "example": "any"
+                "session": {
+                  "example": "cookie"
                 }
               }
             }
@@ -588,35 +516,11 @@
             "schema": {
               "type": "object",
               "properties": {
-                "firstName": {
-                  "example": "any"
+                "expires": {
+                  "example": "date time"
                 },
-                "lastName": {
-                  "example": "any"
-                },
-                "diagnosis": {
-                  "example": "any"
-                },
-                "birthday": {
-                  "example": "any"
-                },
-                "weightBearingStatus": {
-                  "example": "any"
-                },
-                "therapyOrderEndDate": {
-                  "example": "any"
-                },
-                "lastVisit": {
-                  "example": "any"
-                },
-                "nextVisit": {
-                  "example": "any"
-                },
-                "therapyGoals": {
-                  "example": "any"
-                },
-                "assignedNurse": {
-                  "example": "any"
+                "session": {
+                  "example": "cookie"
                 }
               }
             }
