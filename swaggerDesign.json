@@ -27,7 +27,7 @@
   "paths": {
     "/": {
       "get": {
-        "description": "",
+        "description": "login",
         "responses": {
           "default": {
             "description": ""
@@ -37,7 +37,7 @@
     },
     "/dashboard": {
       "get": {
-        "description": "",
+        "description": "welcome screen",
         "responses": {
           "default": {
             "description": ""
@@ -47,7 +47,7 @@
     },
     "/journals/": {
       "get": {
-        "description": "",
+        "description": "get all journals",
         "produces": [
           "application/json"
         ],
@@ -61,7 +61,7 @@
         }
       },
       "post": {
-        "description": "",
+        "description": "create journal",
         "parameters": [
           {
             "name": "body",
@@ -118,7 +118,7 @@
     },
     "/journals/{title}": {
       "get": {
-        "description": "",
+        "description": "find jounral by title",
         "produces": [
           "application/json"
         ],
@@ -142,7 +142,7 @@
     },
     "/journals/{id}": {
       "get": {
-        "description": "",
+        "description": "find jounral by id",
         "produces": [
           "application/json"
         ],
@@ -164,7 +164,7 @@
         }
       },
       "put": {
-        "description": "",
+        "description": "update journal",
         "parameters": [
           {
             "name": "id",
@@ -228,7 +228,7 @@
         }
       },
       "delete": {
-        "description": "",
+        "description": "delete journal by id",
         "parameters": [
           {
             "name": "id",
@@ -393,7 +393,7 @@
         }
       },
       "put": {
-        "description": "",
+        "description": "update entry",
         "parameters": [
           {
             "name": "id",
@@ -457,7 +457,7 @@
         }
       },
       "delete": {
-        "description": "",
+        "description": "delete entry by id",
         "parameters": [
           {
             "name": "id",
@@ -481,7 +481,7 @@
     },
     "/accessTokens/": {
       "get": {
-        "description": "",
+        "description": "get all access tokens",
         "produces": [
           "application/json"
         ],
@@ -495,7 +495,7 @@
         }
       },
       "post": {
-        "description": "",
+        "description": "create access token",
         "parameters": [
           {
             "name": "body",
@@ -552,7 +552,7 @@
     },
     "/accessTokens/{id}": {
       "get": {
-        "description": "",
+        "description": "get access token by id",
         "produces": [
           "application/json"
         ],
@@ -574,7 +574,7 @@
         }
       },
       "put": {
-        "description": "",
+        "description": "update access token",
         "parameters": [
           {
             "name": "id",
@@ -638,7 +638,7 @@
         }
       },
       "delete": {
-        "description": "",
+        "description": "delete access token",
         "parameters": [
           {
             "name": "id",
@@ -662,7 +662,7 @@
     },
     "/users/": {
       "get": {
-        "description": "",
+        "description": "get all users",
         "produces": [
           "application/json"
         ],
@@ -676,7 +676,7 @@
         }
       },
       "post": {
-        "description": "",
+        "description": "add user",
         "parameters": [
           {
             "name": "body",
@@ -724,7 +724,7 @@
     },
     "/users/{id}": {
       "get": {
-        "description": "",
+        "description": "find user by id",
         "produces": [
           "application/json"
         ],
@@ -746,7 +746,7 @@
         }
       },
       "put": {
-        "description": "",
+        "description": "update user by id",
         "parameters": [
           {
             "name": "id",
@@ -801,7 +801,7 @@
         }
       },
       "delete": {
-        "description": "",
+        "description": "delete user by id",
         "parameters": [
           {
             "name": "id",
