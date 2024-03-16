@@ -31,16 +31,11 @@ const getOnejournal = async (req, res) => {
 
 const addjournal = async (req, res) => {
   const journal = {
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    diagnosis: req.body.diagnosis,
-    birthday: req.body.birthday,
-    weightBearingStatus: req.body.weightBearingStatus,
-    therapyOrderEndDate: req.body.therapyOrderEndDate,
-    lastVisit: req.body.lastVisit,
-    nextVisit: req.body.nextVisit,
-    therapyGoals: req.body.therapyGoals,
-    assignedNurse: req.body.assignedNurse
+    journalTitle: req.body.journalTitle,
+    description: req.body.description,
+    createdAt: req.body.createdAt,
+    updatedAt: req.body.updatedAt
+    
   };
   const response = await mongodb.getDb().db().collection('journals').insertOne(journal);
   if (response.acknowledged) {
