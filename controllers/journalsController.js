@@ -31,6 +31,12 @@ const getOnejournal = async (req, res) => {
 
 const addjournal = async (req, res) => {
   const journal = {
+
+    //I've added in the four fields for journals here
+    //If I remember correctly we were going to have
+    //the entry object have the 7 fields we need
+    //-Ian
+
     journalTitle: req.body.journalTitle,
     description: req.body.description,
     createdAt: req.body.createdAt,

@@ -8,6 +8,8 @@ router.use('/journals', auth.ensureAuth, require('./journalsRoute'));
 
 router.use('/users',auth.ensureAuth, require('./usersRoute'));
 
+router.use('/entries',auth.ensureAuth, require('./entriesRoute'));
+
 router.use('/', require('./swagger'));
 
 router.get("/", auth.ensureGuest, (req, res) => {

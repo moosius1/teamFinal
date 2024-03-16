@@ -109,3 +109,32 @@ GET https://cse341byui05personal.onrender.com/patients
 ###render delete patient
 DELETE https://cse341byui05personal.onrender.com/patients/65d184d95300d6d09a53f5b
 ###
+
+
+
+###
+POST https://teamfinal-kbcd.onrender.com/journals
+Content-Type: application/json
+
+{
+  "journalTitle": "Ian's Journal",
+  "description": "Book I: origin",
+  "createdAt": "3/15/2024",
+  "updatedAt": "3/15/2024"
+}
+###
+
+###
+POST https://teamfinal-kbcd.onrender.com/users/
+Content-Type: application/json
+
+{
+  "googleId": "imoe61",
+  "firstName": "Ian",
+  "lastName": "Moes",
+  "displayName": "Ian",
+  "image": "n/a",
+  "createdAt": "3/15/2024",
+  "assignedJournals": "Ian's Journal"
+}
+###
