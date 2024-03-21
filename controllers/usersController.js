@@ -29,6 +29,19 @@ const getOneUser = async (req, res) => {
   }
 };
 
+const getUserByName = async (req, res) => {
+  const userName = req.params.query;
+  const result = await mongodb.getDb().db('').collection('users').find({ $or: [{ firstName: userName }, { lastName: userName }, {displayName: userName}] });
+  if (result) {
+    result.toArray().then((lists) => {
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(lists);
+    });
+  } else {
+    res.status(400).json(result.error || 'Error occurred while retrieving .');
+  }
+};
+
 const addUser = async (req, res) => {
   const user = {
     googleId: req.body.googleId,
@@ -92,4 +105,4 @@ const deleteUser = async (req, res) => {
   }
 };
 
-module.exports = { getAllUsers, getOneUser, addUser, updateUser, deleteUser };
+module.exports = { getAllUsers, getOneUser, addUser, updateUser, deleteUser, getUserByName };

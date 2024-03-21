@@ -7,6 +7,8 @@ const usersController = require('../controllers/usersController')
 
 router.get('/', usersController.getAllUsers);
 
+router.get('/search/:query',  usersController.getUserByName);
+
 router.get('/:id',  usersController.getOneUser);
 
 router.post('/', validation.saveUser, usersController.addUser);
