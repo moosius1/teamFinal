@@ -5,14 +5,18 @@ const validation = require('../middleware/validate');
 
 const journalsController = require('../controllers/journalsController')
 
-router.get('/', journalsController.getAlljournals);
+router.get('/', journalsController.getAllJournals);
 
-router.get('/:id', journalsController.getOnejournal);
+router.get('/search/:query', journalsController.getJournalByTitle);
 
-router.post('/', journalsController.addjournal);
+router.get('/search/:query', journalsController.getJournalByUser);
 
-router.put('/:id', journalsController.updatejournal);
+router.get('/:id', journalsController.getOneJournal);
 
-router.delete('/:id', journalsController.deletejournal);
+router.post('/', journalsController.addJournal);
+
+router.put('/:id', journalsController.updateJournal);
+
+router.delete('/:id', journalsController.deleteJournal);
 
 module.exports = router;

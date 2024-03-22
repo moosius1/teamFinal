@@ -1,7 +1,7 @@
 const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
 
-const getAlljournals = async (req, res) => {
+const getAllJournals = async (req, res) => {
   const result = await mongodb.getDb().db().collection('journals').find();
   if (result) {
     result.toArray().then((lists) => {
@@ -13,7 +13,38 @@ const getAlljournals = async (req, res) => {
   }
 };
 
-const getOnejournal = async (req, res) => {
+const getJournalByTitle = async (req, res) => {
+  const journalTitle = req.params.qurey;
+  const result = await mongodb.getDb().db().collection('journals').find({ journalTitle: journalTitle });
+  if (result) {
+    result.toArray().then((lists) => {
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(lists);
+    });
+  } else {
+    res.status(400).json(result.error || 'Error occurred while retrieving journal.');
+  }
+};
+
+
+const getJournalByUser = async (req, res) => {
+  if (!ObjectId.isValid(req.params.query)) {
+    res.status(400).json('Must use a valid user id.');
+  }
+  const userId = new ObjectId(req.params.query);
+  const result = await mongodb.getDb().db().collection('journals').find({ createdUserId: userId });
+  if (result) {
+    result.toArray().then((lists) => {
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(lists);
+    });
+  } else {
+    res.status(400).json(result.error || 'Error occurred while retrieving journals.');
+  }
+};
+
+
+const getOneJournal = async (req, res) => {
   if (!ObjectId.isValid(req.params.id)) {
     res.status(400).json('Must use a valid journal id.');
   }
@@ -29,7 +60,7 @@ const getOnejournal = async (req, res) => {
   }
 };
 
-const addjournal = async (req, res) => {
+const addJournal = async (req, res) => {
   const journal = {
 
     //I've added in the four fields for journals here
@@ -38,9 +69,11 @@ const addjournal = async (req, res) => {
     //-Ian
 
     journalTitle: req.body.journalTitle,
-    description: req.body.description,
+    theme: req.body.theme,
+    createdUserId: req.body.createdUserId,
     createdAt: req.body.createdAt,
-    updatedAt: req.body.updatedAt
+    updatedAt: req.body.updatedAt,
+    entries: []
     
   };
   const response = await mongodb.getDb().db().collection('journals').insertOne(journal);
@@ -51,22 +84,18 @@ const addjournal = async (req, res) => {
   }
 };
 
-const updatejournal = async (req, res) => {
+const updateJournal = async (req, res) => {
   if (!ObjectId.isValid(req.params.id)) {
     res.status(400).json('Must use a valid journal id.');
   }
   const userId = new ObjectId(req.params.id);
   const journal = {
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    diagnosis: req.body.diagnosis,
-    birthday: req.body.birthday,
-    weightBearingStatus: req.body.weightBearingStatus,
-    therapyOrderEndDate: req.body.therapyOrderEndDate,
-    lastVisit: req.body.lastVisit,
-    nextVisit: req.body.nextVisit,
-    therapyGoals: req.body.therapyGoals,
-    assignedNurse: req.body.assignedNurse
+    journalTitle: req.body.journalTitle,
+    theme: req.body.theme,
+    createdUserId: req.body.userId,
+    createdAt: req.body.createdAt,
+    updatedAt: req.body.updatedAt,
+    entries: []
   };
   const response = await mongodb
     .getDb()
@@ -81,16 +110,16 @@ const updatejournal = async (req, res) => {
   }
 };
 
-const deletejournal = async (req, res) => {
+const deleteJournal = async (req, res) => {
   if (!ObjectId.isValid(req.params.id)) {
     res.status(400).json('Must use a valid journal id.');
   }
-  const userId = new ObjectId(req.params.id);
+  const journalId = new ObjectId(req.params.id);
   const response = await mongodb
     .getDb()
-    .db()
+    .db('journals')
     .collection('journals')
-    .deleteOne({ _id: userId }, true);
+    .deleteOne({ _id: journalId }, true);
   console.log(response);
   if (response.deletedCount > 0) {
     res.status(200).send();
@@ -99,4 +128,4 @@ const deletejournal = async (req, res) => {
   }
 };
 
-module.exports = { getAlljournals, getOnejournal, addjournal, updatejournal, deletejournal };
+module.exports = { getAllJournals, getOneJournal, addJournal, updateJournal, deleteJournal, getJournalByTitle, getJournalByUser };

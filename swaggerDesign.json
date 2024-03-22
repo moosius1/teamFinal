@@ -5,7 +5,7 @@
     "description": "Journal API",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "teamfinal-kbcd.onrender.com",
   "basePath": "/",
   "schemes": [
     "http",
@@ -14,7 +14,7 @@
   "securityDefinitions": {
     "Google Oauth": {
       "type": "oauth2",
-      "authorizationUrl": "http://localhost:8080",
+      "authorizationUrl": "https://teamfinal-kbcd.onrender.com",
       "flow": "authorizationCode"
     }
   },
@@ -69,20 +69,23 @@
             "schema": {
               "type": "object",
               "properties": {
-                "title": {
+                "journalTitle": {
                   "example": "Captains Log"
                 },
                 "theme": {
                   "example": "Gratitude"
                 },
                 "createdUserId": {
-                  "example": "any"
+                  "example": "any user id"
                 },
                 "createdAt": {
                   "example": "any"
                 },
-                "entries": {
+                "updatedAt": {
                   "example": "any"
+                },
+                "entries": {
+                  "example": []
                 }
               }
             }
@@ -101,7 +104,7 @@
         }
       }
     },
-    "/journals/{title}": {
+    "/journals/search/{title}": {
       "get": {
         "description": "find jounral by title",
         "produces": [
@@ -110,6 +113,30 @@
         "parameters": [
           {
             "name": "title",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/journals/search/{UserId}": {
+      "get": {
+        "description": "find jounrals by user id",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -163,20 +190,23 @@
             "schema": {
               "type": "object",
               "properties": {
-                "title": {
+                "journalTitle": {
                   "example": "Captains Log"
                 },
                 "theme": {
                   "example": "Gratitude"
                 },
                 "createdUserId": {
-                  "example": "any"
+                  "example": "any user id"
                 },
                 "createdAt": {
                   "example": "any"
                 },
-                "entries": {
+                "updatedAt": {
                   "example": "any"
+                },
+                "entries": {
+                  "example": []
                 }
               }
             }
