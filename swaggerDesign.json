@@ -294,6 +294,9 @@
                 },
                 "updatedAt": {
                   "example": "any"
+                },
+                "entryDate": {
+                  "example": "any"
                 }
               }
             }
@@ -312,7 +315,7 @@
         }
       }
     },
-    "/entries/{journalId}": {
+    "/entries/search/{journalId}": {
       "get": {
         "description": "find the entries by journal id",
         "produces": [
@@ -336,7 +339,7 @@
         }
       }
     },
-      "/entries/{date}": {
+      "/entries/search/{date}": {
         "get": {
           "description": "find entry by date",
           "produces": [
@@ -417,6 +420,9 @@
                   "example": "any"
                 },
                 "updatedAt": {
+                  "example": "any"
+                },
+                "entryDate": {
                   "example": "any"
                 }
               }

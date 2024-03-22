@@ -13,6 +13,35 @@ const getAllEntries = async (req, res) => {
   }
 };
 
+const getEntriesByJournalId = async (req, res) => {
+  if (!ObjectId.isValid(req.params.id)) {
+    res.status(400).json('Must use a valid journal id.');
+  }
+  const journalId = new ObjectId(req.params.id);
+  const result = await mongodb.getDb().db().collection('entries').find({ journalId: journalId });
+  if (result) {
+    result.toArray().then((lists) => {
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(lists);
+    });
+  } else {
+    res.status(400).json(result.error || 'Error occurred while retrieving journal entries.');
+  }
+};
+
+const getEntriesByDate = async (req, res) => {
+  const entryDate = req.params.date;
+  const result = await mongodb.getDb().db().collection('entries').find({ entryDate: entryDate });
+  if (result) {
+    result.toArray().then((lists) => {
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(lists);
+    });
+  } else {
+    res.status(400).json(result.error || 'Error occurred while retrieving journal entries.');
+  }
+};
+
 const getOneEntry = async (req, res) => {
   if (!ObjectId.isValid(req.params.id)) {
     res.status(400).json('Must use a valid entry id.');
@@ -43,6 +72,7 @@ const addEntry = async (req, res) => {
     tags: req.body.tags,
     createdAt: req.body.createdAt,
     updatedAt: req.body.updatedAt,
+    entryDate: req.body.entryDate
 
     
   };
@@ -56,7 +86,7 @@ const addEntry = async (req, res) => {
 
 const updateEntry = async (req, res) => {
   if (!ObjectId.isValid(req.params.id)) {
-    res.status(400).json('Must use a valid journal id.');
+    res.status(400).json('Must use a valid entry id.');
   }
   const userId = new ObjectId(req.params.id);
   const entry = {
@@ -67,6 +97,7 @@ const updateEntry = async (req, res) => {
     tags: req.body.tags,
     createdAt: req.body.createdAt,
     updatedAt: req.body.updatedAt,
+    entryDate: req.body.entryDate
 
   };
   const response = await mongodb
@@ -100,4 +131,4 @@ const deleteEntry = async (req, res) => {
   }
 };
 
-module.exports = { getAllEntries, getOneEntry, addEntry, updateEntry, deleteEntry };
+module.exports = { getAllEntries, getOneEntry, addEntry, updateEntry, deleteEntry, getEntriesByJournalId, getEntriesByDate };
