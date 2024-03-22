@@ -121,7 +121,7 @@ const deleteEntry = async (req, res) => {
   const response = await mongodb
     .getDb()
     .db()
-    .collection('entry')
+    .collection('entries')
     .deleteOne({ _id: userId }, true);
   console.log(response);
   if (response.deletedCount > 0) {
