@@ -2,6 +2,14 @@
 GET http://localhost:8080/api-docs
 ###
 
+### Local host get all patients
+GET http://localhost:8080/users
+###
+
+
+### Local host get all patients
+GET http://localhost:8080/journals
+###
 
 ###local host add patient
 POST http://localhost:8080/patients
@@ -22,7 +30,7 @@ Content-Type: application/json
 ###
 
 ### Local host get all patients
-GET http://localhost:8080/patients
+GET http://localhost:8080/users
 ###
 
 ###local host update patient

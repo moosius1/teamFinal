@@ -4,11 +4,11 @@ const auth = require('../middleware/auth');
 
 
 
-router.use('/journals', auth.ensureAuth, require('./journalsRoute'));
+router.use('/journals' /*,auth.ensureAuth*/, require('./journalsRoute'));
 
-router.use('/users',auth.ensureAuth, require('./usersRoute'));
+router.use('/users'/*,auth.ensureAuth*/, require('./usersRoute'));
 
-router.use('/entries',auth.ensureAuth, require('./entriesRoute'));
+router.use('/entries'/*,auth.ensureAuth */, require('./entriesRoute'));
 
 router.use('/', require('./swagger'));
 
