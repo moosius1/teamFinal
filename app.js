@@ -87,3 +87,5 @@ mongodb.initDb((err) => {
 });
 
 mongodb.initMongoose()
+
+module.exports = app;
