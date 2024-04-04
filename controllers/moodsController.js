@@ -2,7 +2,7 @@ const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
 
 const getAllMoods = async (req, res) => {
-  const result = await mongodb.getDb().db().collection('moods').find();
+  const result = await mongodb.getDb().db('journals').collection('moods').find();
   if (result) {
     result.toArray().then((lists) => {
       res.setHeader('Content-Type', 'application/json');

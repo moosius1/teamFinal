@@ -10,7 +10,7 @@ router.use('/users'/*,auth.ensureAuth*/, require('./usersRoute'));
 
 router.use('/entries'/*,auth.ensureAuth */, require('./entriesRoute'));
 
-router.use('/moods', auth.ensureAuth, require('./moodsRoute'));
+router.use('/moods'/*,auth.ensureAuth */, require('./moodsRoute'));
 
 router.use('/', require('./swagger'));
 
