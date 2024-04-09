@@ -28,6 +28,11 @@ describe('Test Handlers', () => {
         expect(res.statusCode).toBe(200)
     })
 
+    test('responds to /dashboard', async () => {
+        const res = await request.get('/');
+        expect(res.statusCode).toBe(200)
+    })
+
     test('responds to /journals', async () => {
         const res = await request.get('/journals');
         expect(res.header['content-type']).toBe('application/json; charset=utf-8');
@@ -63,15 +68,50 @@ describe('Test Handlers', () => {
     })
 
     test('responds to /entries/6615a3a9355e045dea29d546', async () => {
-        const res = await request.get('/users');
+        const res = await request.get('/entries');
         expect(res.header['content-type']).toBe('application/json; charset=utf-8');
         expect(res.statusCode).toBe(200)
     })
 
     test('responds to /moods/6615a71c14391930d1351a46', async () => {
-        const res = await request.get('/users');
+        const res = await request.get('/moods');
         expect(res.header['content-type']).toBe('application/json; charset=utf-8');
         expect(res.statusCode).toBe(200)
     })
 
+    test('responds to /journals/search/title/Captains Log', async () => {
+        const res = await request.get('/journals/search/title');
+        expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+        expect(res.statusCode).toBe(200)
+    })
+
+    test('responds to /journals/search/title/Captains Log', async () => {
+        const res = await request.get('/journals/search/title');
+        expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+        expect(res.statusCode).toBe(200)
+    })
+
+    test('responds to /journals/search/65f2762611766b1b626f59a0', async () => {
+        const res = await request.get('/journals/search/');
+        expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+        expect(res.statusCode).toBe(200)
+    })
+
+    test('responds to /entries/search/journal/66063419ee30a04abf5d19c3', async () => {
+        const res = await request.get('entries/search/journal/');
+        expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+        expect(res.statusCode).toBe(200)
+    })
+
+    test('responds to /entries/search/date/4/7/24', async () => {
+        const res = await request.get('entries/search/journal/');
+        expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+        expect(res.statusCode).toBe(200)
+    })
+
+    test('responds to /users/search/Chais', async () => {
+        const res = await request.get('users/search/');
+        expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+        expect(res.statusCode).toBe(200)
+    })
 })

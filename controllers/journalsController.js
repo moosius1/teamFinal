@@ -14,8 +14,8 @@ const getAllJournals = async (req, res) => {
 };
 
 const getJournalByTitle = async (req, res) => {
-  const journalTitle = req.params.qurey;
-  const result = await mongodb.getDb().db('journals').collection('journals').find({ journalTitle: journalTitle });
+  const journalTitle = req.params.query;
+  const result = await mongodb.getDb().db('journals').collection('journals').find({ "journalTitle": journalTitle });
   if (result) {
     result.toArray().then((lists) => {
       res.setHeader('Content-Type', 'application/json');
@@ -31,8 +31,8 @@ const getJournalByUser = async (req, res) => {
   if (!ObjectId.isValid(req.params.query)) {
     res.status(400).json('Must use a valid user id.');
   }
-  const userId = new ObjectId(req.params.query);
-  const result = await mongodb.getDb().db('journals').collection('journals').find({ createdUserId: userId });
+  const userId = req.params.query;
+  const result = await mongodb.getDb().db('journals').collection('journals').find({ "createdUserId": userId });
   if (result) {
     result.toArray().then((lists) => {
       res.setHeader('Content-Type', 'application/json');

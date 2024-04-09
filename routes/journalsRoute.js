@@ -9,7 +9,7 @@ router.get('/', journalsController.getAllJournals);
 
 router.get('/search/title/:query', journalsController.getJournalByTitle);
 
-router.get('/search/user/:query', journalsController.getJournalByUser);
+router.get('/search/:query', journalsController.getJournalByUser);
 
 router.get('/:id', journalsController.getOneJournal);
 

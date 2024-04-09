@@ -17,8 +17,8 @@ const getEntriesByJournalId = async (req, res) => {
   if (!ObjectId.isValid(req.params.query)) {
     res.status(400).json('Must use a valid journal id.');
   }
-  const journalId = new ObjectId(req.params.query);
-  const result = await mongodb.getDb().db('journals').collection('entries').find({ journalId: journalId });
+  const journalId = req.params.query;
+  const result = await mongodb.getDb().db('journals').collection('entries').find({ "journalId": journalId });
   if (result) {
     result.toArray().then((lists) => {
       res.setHeader('Content-Type', 'application/json');
@@ -31,7 +31,7 @@ const getEntriesByJournalId = async (req, res) => {
 
 const getEntriesByDate = async (req, res) => {
   const entryDate = req.params.query;
-  const result = await mongodb.getDb().db('journals').collection('entries').find({ entryDate: entryDate });
+  const result = await mongodb.getDb().db('journals').collection('entries').find({ "entryDate": entryDate });
   if (result) {
     result.toArray().then((lists) => {
       res.setHeader('Content-Type', 'application/json');

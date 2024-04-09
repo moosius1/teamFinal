@@ -128,7 +128,7 @@
         }
       }
     },
-    "/journals/search/user/{UserId}": {
+    "/journals/search/{id}": {
       "get": {
         "description": "find jounrals by user id",
         "produces": [
@@ -136,7 +136,7 @@
         ],
         "parameters": [
           {
-            "name": "user id",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
