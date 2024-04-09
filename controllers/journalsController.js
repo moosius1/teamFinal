@@ -2,7 +2,7 @@ const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
 
 const getAllJournals = async (req, res) => {
-  const result = await mongodb.getDb().db().collection('journals').find();
+  const result = await mongodb.getDb().db('journals').collection('journals').find();
   if (result) {
     result.toArray().then((lists) => {
       res.setHeader('Content-Type', 'application/json');
@@ -15,7 +15,7 @@ const getAllJournals = async (req, res) => {
 
 const getJournalByTitle = async (req, res) => {
   const journalTitle = req.params.qurey;
-  const result = await mongodb.getDb().db().collection('journals').find({ journalTitle: journalTitle });
+  const result = await mongodb.getDb().db('journals').collection('journals').find({ journalTitle: journalTitle });
   if (result) {
     result.toArray().then((lists) => {
       res.setHeader('Content-Type', 'application/json');
@@ -32,7 +32,7 @@ const getJournalByUser = async (req, res) => {
     res.status(400).json('Must use a valid user id.');
   }
   const userId = new ObjectId(req.params.query);
-  const result = await mongodb.getDb().db().collection('journals').find({ createdUserId: userId });
+  const result = await mongodb.getDb().db('journals').collection('journals').find({ createdUserId: userId });
   if (result) {
     result.toArray().then((lists) => {
       res.setHeader('Content-Type', 'application/json');
@@ -49,7 +49,7 @@ const getOneJournal = async (req, res) => {
     res.status(400).json('Must use a valid journal id.');
   }
   const journalId = new ObjectId(req.params.id);
-  const result = await mongodb.getDb().db().collection('journals').find({ _id: journalId });
+  const result = await mongodb.getDb().db('journals').collection('journals').find({ _id: journalId });
   if (result) {
     result.toArray().then((lists) => {
       res.setHeader('Content-Type', 'application/json');
@@ -76,7 +76,7 @@ const addJournal = async (req, res) => {
     entries: []
     
   };
-  const response = await mongodb.getDb().db().collection('journals').insertOne(journal);
+  const response = await mongodb.getDb().db('journals').collection('journals').insertOne(journal);
   if (response.acknowledged) {
     res.status(201).json(response);
   } else {
