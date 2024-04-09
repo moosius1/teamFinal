@@ -104,7 +104,7 @@
         }
       }
     },
-    "/journals/search/{title}": {
+    "/journals/search/title/{title}": {
       "get": {
         "description": "find jounral by title",
         "produces": [
@@ -128,7 +128,7 @@
         }
       }
     },
-    "/journals/search/{UserId}": {
+    "/journals/search/user/{UserId}": {
       "get": {
         "description": "find jounrals by user id",
         "produces": [
@@ -315,7 +315,7 @@
         }
       }
     },
-    "/entries/search/{journalId}": {
+    "/entries/search/journal/{journalId}": {
       "get": {
         "description": "find the entries by journal id",
         "produces": [
@@ -339,7 +339,7 @@
         }
       }
     },
-      "/entries/search/{date}": {
+      "/entries/search/date/{date}": {
         "get": {
           "description": "find entry by date",
           "produces": [
@@ -467,9 +467,9 @@
         }
       }
     },
-    "/accessTokens/": {
+    "/moods/": {
       "get": {
-        "description": "get all access tokens",
+        "description": "get all access moods",
         "produces": [
           "application/json"
         ],
@@ -483,7 +483,7 @@
         }
       },
       "post": {
-        "description": "create access token",
+        "description": "create mood",
         "parameters": [
           {
             "name": "body",
@@ -491,11 +491,11 @@
             "schema": {
               "type": "object",
               "properties": {
-                "expires": {
-                  "example": "date time"
+                "moodName": {
+                  "example": "feelling good"
                 },
-                "session": {
-                  "example": "cookie"
+                "moodIcon": {
+                  "example": "any"
                 }
               }
             }
@@ -514,9 +514,9 @@
         }
       }
     },
-    "/accessTokens/{id}": {
+    "/moods/{id}": {
       "get": {
-        "description": "get access token by id",
+        "description": "get mood by id",
         "produces": [
           "application/json"
         ],
@@ -552,11 +552,11 @@
             "schema": {
               "type": "object",
               "properties": {
-                "expires": {
-                  "example": "date time"
+                "moodName": {
+                  "example": "feelling good"
                 },
-                "session": {
-                  "example": "cookie"
+                "moodIcon": {
+                  "example": "any"
                 }
               }
             }
@@ -578,7 +578,7 @@
         }
       },
       "delete": {
-        "description": "delete access token",
+        "description": "delete mood",
         "parameters": [
           {
             "name": "id",

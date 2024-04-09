@@ -22,11 +22,13 @@ describe('insert', () => {
         const users = db.collection('users');
 
         const mockUser = {
-            id: 'some-user-id',
-            firstName: "Emily",
-            lastName: "Button",
-            email: "emilyButton@gmail.com",
-            age: 25,
+            googleId: 'some-user-id',
+            firstName: "Tommy",
+            lastName: "Monson",
+            displayName: "Tommy Monson",
+            image: "some-image",
+            createdAt: "some-date-time",
+            
         }
 
         await users.insertOne(mockUser)

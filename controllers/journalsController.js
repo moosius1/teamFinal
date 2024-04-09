@@ -88,20 +88,20 @@ const updateJournal = async (req, res) => {
   if (!ObjectId.isValid(req.params.id)) {
     res.status(400).json('Must use a valid journal id.');
   }
-  const userId = new ObjectId(req.params.id);
+  const journalId = new ObjectId(req.params.id);
   const journal = {
     journalTitle: req.body.journalTitle,
     theme: req.body.theme,
-    createdUserId: req.body.userId,
+    createdUserId: req.body.createdUserId,
     createdAt: req.body.createdAt,
     updatedAt: req.body.updatedAt,
-    entries: []
+    entries: req.body.entries
   };
   const response = await mongodb
     .getDb()
     .db('journals')
     .collection('journals')
-    .replaceOne({ _id: userId }, journal);
+    .replaceOne({ _id: journalId }, journal);
   console.log(response);
   if (response.modifiedCount > 0) {
     res.status(204).send();

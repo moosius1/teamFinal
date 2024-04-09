@@ -7,9 +7,9 @@ const journalsController = require('../controllers/journalsController')
 
 router.get('/', journalsController.getAllJournals);
 
-router.get('/search/:query', journalsController.getJournalByTitle);
+router.get('/search/title/:query', journalsController.getJournalByTitle);
 
-router.get('/search/:query', journalsController.getJournalByUser);
+router.get('/search/user/:query', journalsController.getJournalByUser);
 
 router.get('/:id', journalsController.getOneJournal);
 

@@ -28,6 +28,12 @@ describe('Test Handlers', () => {
         expect(res.statusCode).toBe(200)
     })
 
+    test('responds to /journals', async () => {
+        const res = await request.get('/journals');
+        expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+        expect(res.statusCode).toBe(200)
+    })
+
     test('responds to /users', async () => {
         const res = await request.get('/users');
         expect(res.header['content-type']).toBe('application/json; charset=utf-8');
@@ -49,15 +55,23 @@ describe('Test Handlers', () => {
         expect(res.header['content-type']).toBe('application/json; charset=utf-8');
         expect(res.statusCode).toBe(200)
     })
+
     test('responds to /users/65f2762611766b1b626f59a0', async () => {
         const res = await request.get('/users');
         expect(res.header['content-type']).toBe('application/json; charset=utf-8');
         expect(res.statusCode).toBe(200)
     })
 
-    test('responds to /journals', async () => {
-        const res = await request.get('/journals');
+    test('responds to /entries/6615a3a9355e045dea29d546', async () => {
+        const res = await request.get('/users');
         expect(res.header['content-type']).toBe('application/json; charset=utf-8');
         expect(res.statusCode).toBe(200)
     })
+
+    test('responds to /moods/6615a71c14391930d1351a46', async () => {
+        const res = await request.get('/users');
+        expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+        expect(res.statusCode).toBe(200)
+    })
+
 })

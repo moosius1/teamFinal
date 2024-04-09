@@ -14,11 +14,11 @@ const getAllEntries = async (req, res) => {
 };
 
 const getEntriesByJournalId = async (req, res) => {
-  if (!ObjectId.isValid(req.params.id)) {
+  if (!ObjectId.isValid(req.params.query)) {
     res.status(400).json('Must use a valid journal id.');
   }
-  const journalId = new ObjectId(req.params.id);
-  const result = await mongodb.getDb().db().collection('entries').find({ journalId: journalId });
+  const journalId = new ObjectId(req.params.query);
+  const result = await mongodb.getDb().db('journals').collection('entries').find({ journalId: journalId });
   if (result) {
     result.toArray().then((lists) => {
       res.setHeader('Content-Type', 'application/json');
@@ -30,8 +30,8 @@ const getEntriesByJournalId = async (req, res) => {
 };
 
 const getEntriesByDate = async (req, res) => {
-  const entryDate = req.params.date;
-  const result = await mongodb.getDb().db().collection('entries').find({ entryDate: entryDate });
+  const entryDate = req.params.query;
+  const result = await mongodb.getDb().db('journals').collection('entries').find({ entryDate: entryDate });
   if (result) {
     result.toArray().then((lists) => {
       res.setHeader('Content-Type', 'application/json');
@@ -47,7 +47,7 @@ const getOneEntry = async (req, res) => {
     res.status(400).json('Must use a valid entry id.');
   }
   const entryId = new ObjectId(req.params.id);
-  const result = await mongodb.getDb().db().collection('entries').find({ _id: entryId });
+  const result = await mongodb.getDb().db('journals').collection('entries').find({ _id: entryId });
   if (result) {
     result.toArray().then((lists) => {
       res.setHeader('Content-Type', 'application/json');
@@ -102,7 +102,7 @@ const updateEntry = async (req, res) => {
   };
   const response = await mongodb
     .getDb()
-    .db()
+    .db('journals')
     .collection('entries')
     .replaceOne({ _id: userId }, entry);
   console.log(response);
@@ -120,7 +120,7 @@ const deleteEntry = async (req, res) => {
   const userId = new ObjectId(req.params.id);
   const response = await mongodb
     .getDb()
-    .db()
+    .db('journals')
     .collection('entries')
     .deleteOne({ _id: userId }, true);
   console.log(response);
