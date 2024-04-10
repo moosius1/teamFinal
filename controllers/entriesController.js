@@ -31,7 +31,7 @@ const getEntriesByJournalId = async (req, res) => {
 
 const getEntriesByDate = async (req, res) => {
   const entryDate = req.params.query;
-  const result = await mongodb.getDb().db('journals').collection('entries').find({ "entryDate": entryDate });
+  const result = await mongodb.getDb().db('journals').collection('entries').find({ 'entryDate': entryDate });
   if (result) {
     result.toArray().then((lists) => {
       res.setHeader('Content-Type', 'application/json');
@@ -76,7 +76,7 @@ const addEntry = async (req, res) => {
 
     
   };
-  const response = await mongodb.getDb().db().collection('entries').insertOne(entry);
+  const response = await mongodb.getDb().db('journals').collection('entries').insertOne(entry);
   if (response.acknowledged) {
     res.status(201).json(response);
   } else {

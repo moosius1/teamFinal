@@ -9,7 +9,7 @@ router.get('/', entriesController.getAllEntries);
 
 router.get('/search/journal/:query', entriesController.getEntriesByJournalId);
 
-router.get('/search/date/:query', entriesController.getEntriesByDate);
+router.get('/search/dateCreated/:query', entriesController.getEntriesByDate);
 
 router.get('/:id', entriesController.getOneEntry);
 

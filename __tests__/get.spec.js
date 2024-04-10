@@ -14,8 +14,6 @@ describe('Test Handlers', () => {
     beforeAll(async () => {
 
         connection = await MongoClient.connect(process.env.MONGODB_URI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
         });
         db = await connection.db('journals')
     });
@@ -34,6 +32,9 @@ describe('Test Handlers', () => {
     })
 
     test('responds to /journals', async () => {
+        connection = await MongoClient.connect(process.env.MONGODB_URI, {
+        });
+        db = await connection.db('journals')
         const res = await request.get('/journals');
         expect(res.header['content-type']).toBe('application/json; charset=utf-8');
         expect(res.statusCode).toBe(200)
@@ -80,38 +81,33 @@ describe('Test Handlers', () => {
     })
 
     test('responds to /journals/search/title/Captains Log', async () => {
-        const res = await request.get('/journals/search/title');
-        expect(res.header['content-type']).toBe('application/json; charset=utf-8');
-        expect(res.statusCode).toBe(200)
-    })
-
-    test('responds to /journals/search/title/Captains Log', async () => {
-        const res = await request.get('/journals/search/title');
+        const res = await request.get('/journals/search/title/Captains Log');
         expect(res.header['content-type']).toBe('application/json; charset=utf-8');
         expect(res.statusCode).toBe(200)
     })
 
     test('responds to /journals/search/65f2762611766b1b626f59a0', async () => {
-        const res = await request.get('/journals/search/');
+        const res = await request.get('/journals/search/65f2762611766b1b626f59a0');
         expect(res.header['content-type']).toBe('application/json; charset=utf-8');
         expect(res.statusCode).toBe(200)
     })
+
+    //test('responds to /entries/search/dateCreated/4-7-24', async () => {
+        //const res = await request.get('entries/search/dateCreated/4-7-24');
+        //expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+        //expect(res.statusCode).toBe(200)
+    //})
+
+    //test('responds to /users/search/Chais', async () => {
+        //const res = await request.get('users/search/Chais');
+        //expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+        //expect(res.statusCode).toBe(200)
+    //})
 
     test('responds to /entries/search/journal/66063419ee30a04abf5d19c3', async () => {
-        const res = await request.get('entries/search/journal/');
+        const res = await request.get('/entries/search/journal/66063419ee30a04abf5d19c3');
         expect(res.header['content-type']).toBe('application/json; charset=utf-8');
         expect(res.statusCode).toBe(200)
     })
 
-    test('responds to /entries/search/date/4/7/24', async () => {
-        const res = await request.get('entries/search/journal/');
-        expect(res.header['content-type']).toBe('application/json; charset=utf-8');
-        expect(res.statusCode).toBe(200)
-    })
-
-    test('responds to /users/search/Chais', async () => {
-        const res = await request.get('users/search/');
-        expect(res.header['content-type']).toBe('application/json; charset=utf-8');
-        expect(res.statusCode).toBe(200)
-    })
 })

@@ -9,8 +9,6 @@ describe('insert', () => {
     beforeAll(async () => {
 
         connection = await MongoClient.connect(process.env.MONGODB_URI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
         });
         db = await connection.db('journals')
     });
@@ -29,7 +27,7 @@ describe('insert', () => {
             displayName: "Tommy Monson",
             image: "some-image",
             createdAt: "some-date-time",
-            assignedJournals: ["some-jounals"]
+            assignedJournals: "some-jounals"
             
         }
 
@@ -46,6 +44,7 @@ describe('insert', () => {
         const deletedUser = await users.findOne({ id: 'some-user-id' });
         expect(deletedUser).toEqual(null)
     })
+    ),
 
     it('should insert a new mood into the moods collection', async () => {
         const moods = db.collection('moods');
@@ -69,7 +68,7 @@ describe('insert', () => {
         const deletedMood = await moods.findOne({ id: 'some-mood-id' });
         expect(deletedMood).toEqual(null)
     })
-
+),
     it('should insert a new entry into the entries collection', async () => {
         const entries = db.collection('entries');
 
@@ -95,10 +94,10 @@ describe('insert', () => {
     it('should delete an entry from the entries collection', async () => {
         const entries = db.collection('entries')
         await entries.deleteMany({ id: 'some-entry-id' })
-        const deletedEntry = await moods.findOne({ id: 'some-entry-id' });
+        const deletedEntry = await entries.findOne({ id: 'some-entry-id' });
         expect(deletedEntry).toEqual(null)
     })
-
+    ),
     it('should insert a new journal into the journals collection', async () => {
         const journals = db.collection('journals');
 
@@ -122,7 +121,7 @@ describe('insert', () => {
     it('should delete a journal from the journals collection', async () => {
         const journals = db.collection('journals')
         await journals.deleteMany({ id: 'some-journal-id' })
-        const deletedJournal = await moods.findOne({ id: 'some-journal-id' });
+        const deletedJournal = await journals.findOne({ id: 'some-journal-id' });
         expect(deletedJournal).toEqual(null)
     })    
 

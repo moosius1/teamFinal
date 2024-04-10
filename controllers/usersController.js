@@ -31,7 +31,7 @@ const getOneUser = async (req, res) => {
 
 const getUserByName = async (req, res) => {
   const userName = req.params.query;
-  const result = await mongodb.getDb().db('journals').collection('users').find({ $or: [{ firstName: userName }, { lastName: userName }, {displayName: userName}] });
+  const result = await mongodb.getDb().db('journals').collection('users').find({ $or: [{ 'firstName': userName }, { 'lastName': userName }, {'displayName': userName}] });
   if (result) {
     result.toArray().then((lists) => {
       res.setHeader('Content-Type', 'application/json');

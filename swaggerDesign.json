@@ -339,7 +339,7 @@
         }
       }
     },
-      "/entries/search/date/{date}": {
+      "/entries/search/dateCreated/{date}": {
         "get": {
           "description": "find entry by date",
           "produces": [
