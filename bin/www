@@ -26,12 +26,15 @@ var server = http.createServer(app);
  */
 
 if (process.env.NODE_ENV == 'test') {
+  let port = normalizePort(process.env.PORT || '8080');
+  app.set('port', port);
   server.listen(port);
   server.on('error', onError);
   server.on('listening', onListening);
 }
 else {
-  server.listen(8080);
+   let port = process.env.PORT || 8080;
+   server.listen(port);
 }
 
 /**

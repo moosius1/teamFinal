@@ -5,7 +5,7 @@
     "description": "Journal API",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "teamfinal-kbcd.onrender.com",
   "basePath": "/",
   "schemes": [
     "http",
@@ -14,7 +14,7 @@
   "securityDefinitions": {
     "Google Oauth": {
       "type": "oauth2",
-      "authorizationUrl": "http://localhost:8080",
+      "authorizationUrl": "https://teamfinal-kbcd.onrender.com",
       "flow": "authorizationCode"
     }
   },
