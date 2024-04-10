@@ -56,6 +56,7 @@ app.use(session({
     secret: 'keyboard cat',
     resave: false,
     saveUninitialized: false,
+    store: new MongoStore({ /* MongoDB connection */ })
 }));
 
 
