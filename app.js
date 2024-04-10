@@ -5,7 +5,8 @@ const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
 const mongodb = require('./db/connect');
 const passport = require('passport')
-const session = require('express-session')
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 const app = express();
 
 app.use(bodyParser.json());
