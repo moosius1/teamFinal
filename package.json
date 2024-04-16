@@ -28,7 +28,7 @@
     "mongoose": "^8.2.0",
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0",
-    "sessions": "^0.0.2-7",
+    "sessions": "^0.0.2",
     "swagger-ui-express": "^5.0.0",
     "validatorjs": "^3.22.1"
   },
